@@ -1,0 +1,17 @@
+<%= form_for([@restaurant, @restaurant.reservations.build]) do |f| %>
+  <p>
+    <%= f.label :email %><br>
+    <%= f.text_field :email, class: 'form-control' %>
+  </p>
+  <p>
+    <%= f.label :message %><br>
+    <%= f.text_area :message, class: 'form-control' %>
+  </p>
+  <p>
+    <strong>Date and Time:</strong><br>
+    <%= f.datetime_select :reserved_at %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

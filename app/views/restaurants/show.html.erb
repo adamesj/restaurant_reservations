@@ -1,0 +1,13 @@
+<p>
+  <strong>Name:</strong>
+  <%= @restaurant.name %>
+</p>
+
+<h2>Reservations</h2>
+<%= render @restaurant.reservations %>
+
+<h2>Add a reservation:</h2>
+<%= render 'reservations/form' %>
+
+<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+<%= link_to 'Back', restaurants_path %>

@@ -1,0 +1,25 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <ul class="nav navbar-nav">
+        <a class="navbar-brand" href="#"><li><%= link_to 'Restaurantier', restaurants_path %></li></a>
+      <ul>
+    </div>
+    <div class="container-fluid">
+      <ul class="nav navbar-nav navbar-right">
+        <% if owner_signed_in? %>
+          <li><%= link_to'<span class="glyphicon glyphicon-log-out"></span> Logout'.html_safe, destroy_owner_session_path, :method => :delete %></li>
+        <% else %>
+          <li><%= link_to '<span class="glyphicon glyphicon-log-in"></span> Login'.html_safe, new_owner_session_path %></li>
+          <li><%= link_to '<span class="glyphicon glyphicon-pencil"></span> Sign Up'.html_safe, new_owner_registration_path %></li>
+        <% end %>
+      </ul>
+    </div>
+</nav>
