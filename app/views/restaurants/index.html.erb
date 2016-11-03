@@ -6,8 +6,10 @@
       <% @restaurants.each do |restaurant| %>
         <p><%= restaurant.name %></p>
         <%= link_to 'Show', restaurant_path(restaurant) %>
-        <%= link_to 'Edit', edit_restaurant_path(restaurant) %>
-        <%= link_to 'Destroy', restaurant_path(restaurant), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% if signed_in? && current_owner.admin? %>
+          <%= link_to 'Edit', edit_restaurant_path(restaurant) %>
+          <%= link_to 'Destroy', restaurant_path(restaurant), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
       <% end %>
     <% end %>
   </div>

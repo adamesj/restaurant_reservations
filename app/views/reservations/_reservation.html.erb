@@ -1,0 +1,20 @@
+<p>
+  <strong>Reveserved by:</strong>
+  <%= reservation.email %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= reservation.message %>
+</p>
+
+<p>
+  <strong>Time reserved:</strong>
+  <%= reservation.reserved_at %>
+</p>
+
+<% if signed_in? && current_owner.admin? %>
+  <p>
+    <%= link_to 'Remove Reservation', [reservation.restaurant, reservation], method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" } %>
+  </p>
+<% end %>

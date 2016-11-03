@@ -11,6 +11,8 @@ gem 'bootstrap-sass'
 gem 'masonry-rails', '~> 0.2.4'
 gem 'turbolinks'
 gem 'devise'
+gem 'sendgrid'
+gem "recaptcha", require: "recaptcha/rails"
 gem "parsley-rails"
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc

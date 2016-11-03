@@ -11,6 +11,10 @@
     <strong>Date and Time:</strong><br>
     <%= f.datetime_select :reserved_at %>
   </p>
+
+  <%= flash[:recaptcha_error] %>
+  <%= recaptcha_tags %>
+
   <p>
     <%= f.submit %>
   </p>

@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_owner!, only: [:edit, :update, :destroy]
 
   def index
     @restaurants = Restaurant.all
@@ -18,6 +18,10 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def show
+    @restaurant = Restaurant.find(params[:id])
+  end
+
   def update
     if @restaurant.update(restaurant_params)
       redirect_to @restaurant, notice: 'Restaurant was successfully updated.'
@@ -33,11 +37,11 @@ class RestaurantsController < ApplicationController
 
   private
 
-  def set_restaurant
-    @restaurant = Restaurant.find(params[:id])
-  end
+    def set_restaurant
+      @restaurant = Restaurant.find(params[:id])
+    end
 
-  def restaurant_params
-    params.require(:restaurant).permit(:name)
-  end
+    def restaurant_params
+      params.require(:restaurant).permit(:name)
+    end
 end
