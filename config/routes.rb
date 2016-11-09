@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :owners
+  devise_for :users
+
   resources :restaurants do
     resources :reservations
+    put :favorite, on: :member
   end
-  root 'restaurants#index'
-  get 'owners/dashboard' => 'owners#dashboard'
+
+  authenticated :user do
+    root :to => "users#dashboard", :as => "authenticated_root"
+  end
+
+  root :to => 'restaurants#index'
 end

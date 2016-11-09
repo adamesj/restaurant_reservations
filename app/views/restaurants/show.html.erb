@@ -1,13 +1,20 @@
-<p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
-</p>
+<div class="container-fluid">
+  <p>
+    <strong>Name:</strong>
+    <%= @restaurant.name %>
+  </p>
 
-<h2>Reservations</h2>
-<%= render @restaurant.reservations %>
+  <% if current_user %>
+    <%= link_to'<span class="glyphicon glyphicon-thumbs-up"></span> Favorite'.html_safe, favorite_restaurant_path(@restaurant, type: "favorite"), method: :put, class: 'btn btn-warning' %>
+    <%= link_to'<span class="glyphicon glyphicon-thumbs-down"></span> Unfavorite'.html_safe, favorite_restaurant_path(@restaurant, type: "unfavorite"), method: :put, class: 'btn btn-danger' %>
+  <% end %>
 
-<h2>Add a reservation:</h2>
-<%= render 'reservations/form' %>
+  <h2>Reservations</h2>
+  <%= render @restaurant.reservations %>
 
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
+  <h2>Add a reservation:</h2>
+  <%= render 'reservations/form' %>
+
+  <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+  <%= link_to 'Back', restaurants_path %>
+</div>

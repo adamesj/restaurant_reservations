@@ -1,7 +1,25 @@
 class RestaurantsController < ApplicationController
-  before_action :authenticate_owner!, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+
+  def favorite
+    @restaurant = Restaurant.find(params[:id])
+    type = params[:type]
+    if type == "favorite"
+      current_user.favorites << @restaurant
+      redirect_to :back, notice: "You favorited #{@restaurant.name}"
+
+    elsif type == "unfavorite"
+      current_user.favorites.delete(@restaurant)
+      redirect_to :back, notice: "Unfavorited #{@restaurant.name}"
+
+    else
+      # Type missing, nothing happens
+      redirect_to :back, notice: 'Nothing happened.'
+    end
+  end
 
   def index
+    @favorites = current_user.favorites
     @restaurants = Restaurant.all
   end
 
@@ -34,6 +52,7 @@ class RestaurantsController < ApplicationController
     @restaurant.destroy
     redirect_to restaurants_url
   end
+
 
   private
 

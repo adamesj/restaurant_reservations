@@ -14,11 +14,14 @@
     </div>
     <div class="container-fluid">
       <ul class="nav navbar-nav navbar-right">
-        <% if owner_signed_in? %>
-          <li><%= link_to'<span class="glyphicon glyphicon-log-out"></span> Logout'.html_safe, destroy_owner_session_path, :method => :delete %></li>
+        <% if user_signed_in? && current_user.admin? %>
+          <li><%= link_to'<span class="glyphicon glyphicon-wrench"></span> Admin Dashboard'.html_safe, authenticated_root_path %></li>
+        <% end %>
+        <% if user_signed_in? %>
+          <li><%= link_to'<span class="glyphicon glyphicon-log-out"></span> Logout'.html_safe, destroy_user_session_path, :method => :delete %></li>
         <% else %>
-          <li><%= link_to '<span class="glyphicon glyphicon-log-in"></span> Login'.html_safe, new_owner_session_path %></li>
-          <li><%= link_to '<span class="glyphicon glyphicon-pencil"></span> Sign Up'.html_safe, new_owner_registration_path %></li>
+          <li><%= link_to '<span class="glyphicon glyphicon-log-in"></span> Login'.html_safe, new_user_session_path %></li>
+          <li><%= link_to '<span class="glyphicon glyphicon-pencil"></span> Sign Up'.html_safe, new_user_registration_path %></li>
         <% end %>
       </ul>
     </div>

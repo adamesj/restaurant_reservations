@@ -1,12 +1,12 @@
 <div class="container">
   <div class="jumbotron center">
     <h1>Manage your Restaurants</h1>
-    <% if owner_signed_in? %>
+    <% if user_signed_in? %>
       <%= link_to 'Add a new restaurant', new_restaurant_path, class: 'btn btn-info' %>
       <% @restaurants.each do |restaurant| %>
         <p><%= restaurant.name %></p>
         <%= link_to 'Show', restaurant_path(restaurant) %>
-        <% if signed_in? && current_owner.admin? %>
+        <% if signed_in? && current_user.admin? %>
           <%= link_to 'Edit', edit_restaurant_path(restaurant) %>
           <%= link_to 'Destroy', restaurant_path(restaurant), method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>
