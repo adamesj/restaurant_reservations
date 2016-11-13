@@ -5,4 +5,8 @@ class Restaurant < ActiveRecord::Base
 
   has_many :favorite_restaurants
   has_many :favorited_by, through: :favorite_restaurants, source: :user
+
+  def favorites_count
+    favorited_by.count
+  end
 end

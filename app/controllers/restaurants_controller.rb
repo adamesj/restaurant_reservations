@@ -19,7 +19,6 @@ class RestaurantsController < ApplicationController
   end
 
   def index
-    @favorites = current_user.favorites
     @restaurants = Restaurant.all
   end
 
@@ -38,6 +37,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    @restaurant.favorited_by
   end
 
   def update
