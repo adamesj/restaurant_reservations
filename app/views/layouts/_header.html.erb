@@ -21,8 +21,9 @@
           <li><%= link_to'<span class="glyphicon glyphicon-user"></span> User Dashboard'.html_safe, users_my_stars_path %></li>
           <li><%= link_to'<span class="glyphicon glyphicon-log-out"></span> Logout'.html_safe, destroy_user_session_path, :method => :delete %></li>
         <% else %>
-          <li><%= link_to '<span class="glyphicon glyphicon-log-in"></span> Login'.html_safe, new_user_session_path %></li>
-          <li><%= link_to '<span class="glyphicon glyphicon-pencil"></span> Sign Up'.html_safe, new_user_registration_path %></li>
+          <li><%= link_to '<span class="glyphicon glyphicon-log-in"></span> Log in'.html_safe, new_user_session_path %></li>
+          <li><%= link_to '<span class="glyphicon glyphicon-pencil"></span> Sign up'.html_safe, new_user_registration_path %></li>
+          <li><%= link_to 'Sign in with Twitter', user_twitter_omniauth_authorize_path, class: 'btn btn-info btn-sm' %><li>
         <% end %>
       </ul>
     </div>

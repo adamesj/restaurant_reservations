@@ -11,7 +11,11 @@ gem 'bootstrap-sass'
 gem 'masonry-rails', '~> 0.2.4'
 gem 'turbolinks'
 gem 'devise'
+gem 'pry'
 gem 'sendgrid'
+gem 'omniauth-twitter'
+gem 'activerecord-session_store'
+gem 'figaro', '~> 1.1', '>= 1.1.1'
 gem "recaptcha", require: "recaptcha/rails"
 gem "parsley-rails"
 gem 'jbuilder', '~> 2.0'
