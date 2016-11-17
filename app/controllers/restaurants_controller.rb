@@ -20,6 +20,11 @@ class RestaurantsController < ApplicationController
 
   def index
     @restaurants = Restaurant.all
+    if params[:search]
+      @restaurants = Restaurant.search(params[:search]).order("created_at DESC")
+    else
+      @restaurants = Restaurant.all.order("created_at DESC")
+    end
   end
 
   def new
@@ -27,7 +32,7 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.new(restaurant_params)
+    @restaurant = current_user.restaurants.build(restaurant_params)
     if @restaurant.save
       redirect_to @restaurant, notice: 'Restaurant was successfully created.'
     else
@@ -36,11 +41,16 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.includes(:categories).find(params[:id])
     @restaurant.favorited_by
   end
 
+  def edit
+    @restaurant = Restaurant.find(params[:id])
+  end
+
   def update
+    @restaurant = Restaurant.find(params[:id])
     if @restaurant.update(restaurant_params)
       redirect_to @restaurant, notice: 'Restaurant was successfully updated.'
     else
@@ -49,10 +59,10 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy
+    @restaurant = Restaurant.find(params[:id])
     @restaurant.destroy
     redirect_to restaurants_url
   end
-
 
   private
 
@@ -61,6 +71,6 @@ class RestaurantsController < ApplicationController
     end
 
     def restaurant_params
-      params.require(:restaurant).permit(:name)
+      params.require(:restaurant).permit(:name, :address, :created_at, :category_ids => [])
     end
 end

@@ -9,3 +9,10 @@
 ['patron', 'admin'].each do |role|
   Role.find_or_create_by({name: role})
 end
+
+Category.create [{:name => 'Italian'},
+                {:name => 'Japanese'},
+                {:name => 'Chinese'},
+                {:name => 'BBQ'},
+                {:name => 'Thai'},
+                {:name => 'Spanish'}]

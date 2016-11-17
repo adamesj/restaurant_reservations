@@ -10,6 +10,12 @@
       </button>
       <ul class="nav navbar-nav">
         <a class="navbar-brand" href="#"><li><%= link_to 'Restaurantier', restaurants_path %></li></a>
+        <li>
+          <%= form_tag(restaurants_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search Restaurants" %>
+            <%= submit_tag "Search", :name => nil %>
+          <% end %>
+        </li>
       <ul>
     </div>
     <div class="container-fluid">

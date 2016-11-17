@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'masonry-rails', '~> 0.2.4'
 gem 'turbolinks'
+gem 'chosen-rails'
 gem 'devise'
 gem 'pry'
 gem 'sendgrid'
@@ -24,6 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   gem 'pry'
   gem 'byebug'
+  gem 'better_errors'
 end
 
 group :development do

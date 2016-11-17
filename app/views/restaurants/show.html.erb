@@ -1,19 +1,34 @@
-<div class="container-fluid">
+<div class="container">
   <p>
-    <strong>Name:</strong>
+    <strong>Restaurant: </strong>
     <%= @restaurant.name %>
   </p>
 
-  <% if current_user %>
-    <%= link_to'<span class="glyphicon glyphicon-thumbs-up"></span> Favorite'.html_safe, favorite_restaurant_path(@restaurant, type: "favorite"), method: :put, class: 'btn btn-warning' %>
-    <%= link_to'<span class="glyphicon glyphicon-thumbs-down"></span> Unfavorite'.html_safe, favorite_restaurant_path(@restaurant, type: "unfavorite"), method: :put, class: 'btn btn-danger' %>
-  <% end %>
+  <p>
+    <strong>Categories: </strong>
+    <% @restaurant.categories.each do |category| %>
+      <%= link_to category.name, category_path(category) %>
+    <% end %>
+  </p>
 
-  <h2>Reservations</h2>
-  <%= render @restaurant.reservations %>
+  <div id="favorites">
+    <% if current_user %>
+      <%= link_to'<span class="glyphicon glyphicon-thumbs-up"></span> Favorite'.html_safe, favorite_restaurant_path(@restaurant, type: "favorite"), method: :put, class: 'btn btn-warning' %>
+      <%= link_to'<span class="glyphicon glyphicon-thumbs-down"></span> Unfavorite'.html_safe, favorite_restaurant_path(@restaurant, type: "unfavorite"), method: :put, class: 'btn btn-danger' %>
+    <% end %>
+  </div>
+  <hr>
 
-  <h2>Add a reservation:</h2>
-  <%= render 'reservations/form' %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2>Reservation Menu</h2>
+    </div>
+    <div class="panel-body">
+      <%= render @restaurant.reservations %>
+      <h2>Add a reservation:</h2>
+      <%= render 'reservations/form' %>
+    </div>
+  </div>
 
   <% if current_user == @restaurant.user_id %>
     <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |

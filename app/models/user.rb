@@ -14,9 +14,6 @@ class User < ActiveRecord::Base
   belongs_to :role
   before_create :set_default_role
 
-  validates_presence_of :uid, :provider
-  validates_uniqueness_of :uid, :scope => :provider
-
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.id).first_or_create do |user|
       user.email = auth.info.email

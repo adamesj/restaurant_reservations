@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     put :favorite, on: :member
   end
 
+  resources :categories
+
   authenticated :user do
     root :to => "users#dashboard", :as => "authenticated_root"
   end
