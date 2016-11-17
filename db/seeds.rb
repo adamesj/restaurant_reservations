@@ -10,9 +10,12 @@
   Role.find_or_create_by({name: role})
 end
 
+
+Category.delete_all
 Category.create [{:name => 'Italian'},
                 {:name => 'Japanese'},
                 {:name => 'Chinese'},
                 {:name => 'BBQ'},
                 {:name => 'Thai'},
-                {:name => 'Spanish'}]
+                {:name => 'Spanish'},
+                {:name => 'Vegan'}]

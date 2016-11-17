@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     put :favorite, on: :member
   end
 
+  get '/restaurants/:id/:name' => 'restaurants#show', :as => :restaurant_with_title
+
   resources :categories
 
   authenticated :user do

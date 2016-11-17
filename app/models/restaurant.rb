@@ -9,6 +9,9 @@ class Restaurant < ActiveRecord::Base
   has_many :categorizations
   has_many :categories, through: :categorizations
 
+  geocoded_by :address
+  after_validation :geocode, :if => :address_changed?
+
   def favorites_count
     favorited_by.count
   end

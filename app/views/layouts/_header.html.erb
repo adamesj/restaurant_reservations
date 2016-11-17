@@ -10,15 +10,17 @@
       </button>
       <ul class="nav navbar-nav">
         <a class="navbar-brand" href="#"><li><%= link_to 'Restaurantier', restaurants_path %></li></a>
-        <li>
-          <%= form_tag(restaurants_path, :method => "get", id: "search-form") do %>
-            <%= text_field_tag :search, params[:search], placeholder: "Search Restaurants", class: "form-control" %>
-            <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
-          <% end %>
-        </li>
       <ul>
     </div>
     <div class="container-fluid">
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+        <%= form_tag(restaurants_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search Restaurants", class: "form-control" %>
+        </div>
+          <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+        <% end %>
+      </form>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? && current_user.admin? %>
           <li><%= link_to'<span class="glyphicon glyphicon-wrench"></span> Admin Dashboard'.html_safe, authenticated_root_path %></li>

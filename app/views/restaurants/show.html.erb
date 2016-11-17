@@ -5,6 +5,21 @@
   </p>
 
   <p>
+    <strong>Address: </strong>
+    <%= @restaurant.address %>
+  </p>
+
+  <p>
+    <strong>Latitude: </strong>
+    <%= @restaurant.latitude %>
+  </p>
+
+  <p>
+    <strong>Longitude: </strong>
+    <%= @restaurant.longitude %>
+  </p>
+
+  <p>
     <strong>Categories: </strong>
     <% @restaurant.categories.each do |category| %>
       <%= link_to category.name, category_path(category) %>

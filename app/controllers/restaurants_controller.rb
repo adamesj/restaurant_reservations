@@ -20,6 +20,12 @@ class RestaurantsController < ApplicationController
 
   def index
     @restaurants = Restaurant.all
+    @hash = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
+      restaurant_path = view_context.link_to restaurant.name, restaurant_path(restaurant)
+      marker.lat restaurant.latitude
+      marker.lng restaurant.longitude
+      marker.infowindow "<b>#{restaurant_path}</b>"
+    end
     if params[:search]
       @restaurants = Restaurant.search(params[:search]).order("created_at DESC")
     else
@@ -71,6 +77,6 @@ class RestaurantsController < ApplicationController
     end
 
     def restaurant_params
-      params.require(:restaurant).permit(:name, :address, :created_at, :category_ids => [])
+      params.require(:restaurant).permit(:name, :address, :latitude, :longitude, :created_at, :category_ids => [])
     end
 end
