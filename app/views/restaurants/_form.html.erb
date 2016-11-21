@@ -1,47 +1,59 @@
-<%= form_for(@restaurant) do |f| %>
- <% if @restaurant.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@restaurant.errors.count, "error") %> prohibited
-        this restaurant from being saved:
-      </h2>
-      <ul>
-        <% @restaurant.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+<div class="container">
+  <%= form_for @restaurant, :html => {:multipart => true} do |f| %>
+   <% if @restaurant.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@restaurant.errors.count, "error") %> prohibited
+          this restaurant from being saved:
+        </h2>
+        <ul>
+          <% @restaurant.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :address %>
+      <%= f.text_field :address, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :remote_image_url, "or image URL" %>
+      <%= f.text_field :remote_image_url, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :latitude %>
+      <%= f.text_field :latitude, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :longitude %>
+      <%= f.text_field :longitude, class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= hidden_field_tag "restaurant[category_ids][]", nil %>
+      <% Category.all.each do |category| %>
+        <%= check_box_tag "restaurant[category_ids][]", category.id, @restaurant.category_ids.include?(category.id), id: dom_id(category) %>
+        <%= label_tag dom_id(category), category.name %>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit class: "btn btn-primary" %>
     </div>
   <% end %>
-
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :address %>
-    <%= f.text_field :address, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :latitude %>
-    <%= f.text_field :latitude, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :longitude %>
-    <%= f.text_field :longitude, class: "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= hidden_field_tag "restaurant[category_ids][]", nil %>
-    <% Category.all.each do |category| %>
-      <%= check_box_tag "restaurant[category_ids][]", category.id, @restaurant.category_ids.include?(category.id), id: dom_id(category) %>
-      <%= label_tag dom_id(category), category.name %>
-    <% end %>
-  </div>
-
-  <div class="form-group">
-    <%= f.submit class: "btn btn-primary" %>
-  </div>
-<% end %>
+</div>

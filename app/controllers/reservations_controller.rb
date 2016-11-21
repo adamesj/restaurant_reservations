@@ -1,16 +1,24 @@
 class ReservationsController < ApplicationController
-  prepend_before_action :check_captcha, only: [:create]
 
   def create
     @restaurant = Restaurant.find(params[:restaurant_id])
     @reservation = @restaurant.reservations.create(reservation_params)
-    if @reservation.save
+    if verify_recaptcha(model: @reservation) && @reservation.save
       ReservationNotifier.reservation_notifier(@reservation).deliver
-      verify_recaptcha(model: @reservation) && @reservation.save
+      redirect_to restaurant_path(@restaurant)
     else
-      render :action => 'new'
+      render :new
     end
-    redirect_to restaurant_path(@restaurant)
+  end
+
+  def edit
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @reservation = @restaurant.reservations.find(params[:id])
+  end
+
+  def update
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @reservation = @restaurant.reservations.find(params[:id])
   end
 
   def destroy
@@ -22,6 +30,6 @@ class ReservationsController < ApplicationController
 
   private
     def reservation_params
-      params.require(:reservation).permit(:email, :message, :reserved_at)
+      params.require(:reservation).permit(:email, :party, :message, :reserved_at)
     end
 end

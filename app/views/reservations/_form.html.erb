@@ -8,8 +8,12 @@
     <%= f.text_area :message, class: 'form-control' %>
   </p>
   <p>
+    <%= f.label :party %><br>
+    <%= f.select :party, options_for_select(1..10), { prompt: "0" } %>
+  </p>
+  <p>
     <strong>Date and Time:</strong><br>
-    <%= f.datetime_select :reserved_at %>
+    <span class="datetime"><%= f.datetime_select :reserved_at , ampm: true , :discard_year => true, :discard_minute => true, :class => "form-control"%><span/>
   </p>
 
   <%= flash[:recaptcha_error] %>
