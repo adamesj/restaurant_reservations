@@ -13,6 +13,7 @@ gem 'gmaps4rails'
 gem 'turbolinks'
 gem 'chosen-rails'
 gem 'underscore-rails'
+gem 'annotate', '~> 2.7', '>= 2.7.1'
 gem 'devise'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem 'rmagick'
@@ -29,6 +30,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   gem 'pry'
   gem 'byebug'
+  gem 'rspec'
   gem 'better_errors'
 end
 

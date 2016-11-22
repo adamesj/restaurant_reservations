@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: restaurants
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  user_id     :integer
+#  category_id :integer
+#  address     :string
+#  created_at  :datetime
+#  updated_at  :datetime
+#  longitude   :float
+#  latitude    :float
+#  image       :string
+#
+
 class Restaurant < ActiveRecord::Base
   attr_accessor :image
 
@@ -19,9 +35,5 @@ class Restaurant < ActiveRecord::Base
 
   def favorites_count
     favorited_by.count
-  end
-
-  def self.search(search)
-    where("name LIKE ? OR address LIKE ?", "%#{search}%", "%#{search}%")
   end
 end

@@ -26,11 +26,6 @@ class RestaurantsController < ApplicationController
       marker.lng restaurant.longitude
       marker.infowindow "<b>#{restaurant_path}</b>"
     end
-    if params[:search]
-      @restaurants = Restaurant.search(params[:search]).order("created_at DESC")
-    else
-      @restaurants = Restaurant.all.order("created_at DESC")
-    end
   end
 
   def new
