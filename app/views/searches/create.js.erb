@@ -1,0 +1,3 @@
+$('#restaurants_table').hide(); // hides the current content on the page
+$('#restaurants_table').replaceWith("<tbody id='restaurants_table'><%= j render @restaurants %></tbody>"); // replaces it with the results from the search
+$('#restaurants_table').show(); // displays the result of the search

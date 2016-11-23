@@ -30,7 +30,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   gem 'pry'
   gem 'byebug'
-  gem 'rspec'
+  gem 'rspec-rails', '~> 3.4'
   gem 'better_errors'
 end
 

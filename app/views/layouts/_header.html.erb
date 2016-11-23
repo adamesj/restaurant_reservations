@@ -13,14 +13,12 @@
       <ul>
     </div>
     <div class="container-fluid">
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-        <%= form_tag(restaurants_path, :method => "get", id: "search-form") do %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search Restaurants", class: "form-control" %>
-        </div>
-          <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+      <div class="form-group">
+        <%= form_tag searches_path, remote: true, class: "navbar-form navbar-left" do %>
+          <%= text_field_tag :search, nil, placeholder: "Search", class: "form-control" %>
+          <%= submit_tag "Search", class: "btn btn-default" %>
         <% end %>
-      </form>
+      </div>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? && current_user.admin? %>
           <li><%= link_to'<span class="glyphicon glyphicon-wrench"></span> Admin Dashboard'.html_safe, authenticated_root_path %></li>

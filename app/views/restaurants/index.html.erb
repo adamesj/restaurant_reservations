@@ -20,8 +20,6 @@
           <% end %>
         </ul>
         <tr>
-          <th>Latitude</th>
-          <th>Longitude</th>
           <th>Name</th>
           <th>Address</th>
           <th></th>
@@ -29,20 +27,13 @@
           <th></th>
         </tr>
       </thead>
-
-      <tbody>
-        <%= content_tag_for(:tr, @restaurants) do |restaurant| %>
-          <td><%= restaurant.latitude %></td>
-          <td><%= restaurant.longitude %></td>
-          <td><%= restaurant.name %></td>
-          <td><%= restaurant.address %></td>
-          <td><%= link_to 'Show', restaurant_path(restaurant) %></td>
-          <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-          <td><%= link_to 'Destroy', restaurant_path(restaurant), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+      <div>
+      <tbody id="restaurants_table">
+        <%= render @restaurants %>
       </tbody>
     </table>
   </div>
+
 </div>
 
 <script type="text/javascript">
