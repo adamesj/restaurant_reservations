@@ -18,6 +18,9 @@
   <%= reservation.reserved_at.strftime("%B %d at %I:%M %p") %>
 </p>
 
+<br>
+<hr>
+
 <% if signed_in? && current_user.admin? %>
   <p>
     <%= link_to 'Remove Reservation', [reservation.restaurant, reservation], method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" } %>

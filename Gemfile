@@ -19,6 +19,7 @@ gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem 'rmagick'
 gem 'geocoder'
 gem 'sendgrid'
+gem "font-awesome-rails"
 gem 'omniauth-twitter'
 gem 'activerecord-session_store'
 gem 'figaro', '~> 1.1', '>= 1.1.1'

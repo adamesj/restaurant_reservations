@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'pages/index'
+
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks" }
 
 
@@ -19,5 +21,5 @@ Rails.application.routes.draw do
 
   get '/users/my_stars', to: 'users#my_stars'
 
-  root :to => 'restaurants#index'
+  root :to => 'pages#index'
 end
