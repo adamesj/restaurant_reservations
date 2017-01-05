@@ -1,12 +1,9 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def all
     @user = User.from_omniauth(request.env["omniauth.auth"])
-    if @user.present?
-      sign_in @user
-      binding.pry
-      redirect_to root_path
+    if @user.persisted?
+      sign_in_and_redirect @user, notice: "Signed in!"
     else
-      session["devise.user_attributes"] = @user.attributes
       redirect_to new_user_registration_url
     end
   end

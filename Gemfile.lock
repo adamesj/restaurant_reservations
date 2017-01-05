@@ -243,13 +243,14 @@ DEPENDENCIES
   chosen-rails
   coffee-rails (~> 4.1.0)
   devise
-  figaro (~> 1.1, >= 1.1.1)
+  figaro (~> 1.1)
   font-awesome-rails
   geocoder
   gmaps4rails
   jbuilder (~> 2.0)
   jquery-rails
   masonry-rails (~> 0.2.4)
+  nokogiri
   omniauth-twitter
   parsley-rails
   pg (~> 0.15)
@@ -257,7 +258,7 @@ DEPENDENCIES
   rails (= 4.2.6)
   recaptcha
   rmagick
-  rspec-rails (~> 3.4)
+  rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sendgrid

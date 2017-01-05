@@ -12,6 +12,7 @@ gem 'masonry-rails', '~> 0.2.4'
 gem 'gmaps4rails'
 gem 'turbolinks'
 gem 'chosen-rails'
+gem 'nokogiri'
 gem 'underscore-rails'
 gem 'annotate', '~> 2.7', '>= 2.7.1'
 gem 'devise'
@@ -22,7 +23,7 @@ gem 'sendgrid'
 gem "font-awesome-rails"
 gem 'omniauth-twitter'
 gem 'activerecord-session_store'
-gem 'figaro', '~> 1.1', '>= 1.1.1'
+gem 'figaro', '~> 1.1'
 gem "recaptcha", require: "recaptcha/rails"
 gem "parsley-rails"
 gem 'jbuilder', '~> 2.0'
@@ -31,7 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   gem 'pry'
   gem 'byebug'
-  gem 'rspec-rails', '~> 3.4'
+  gem 'rspec-rails'
   gem 'better_errors'
 end
 
