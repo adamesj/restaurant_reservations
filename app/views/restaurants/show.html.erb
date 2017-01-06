@@ -12,16 +12,6 @@
   <%= image_tag @restaurant.image_url(:thumb).to_s if @restaurant.image_url.present? %>
 
   <p>
-    <strong>Latitude: </strong>
-    <%= @restaurant.latitude %>
-  </p>
-
-  <p>
-    <strong>Longitude: </strong>
-    <%= @restaurant.longitude %>
-  </p>
-
-  <p>
     <strong>Categories: </strong>
     <%= @restaurant.categories.collect {|s| s.name }.join(", ") %>
   </p>

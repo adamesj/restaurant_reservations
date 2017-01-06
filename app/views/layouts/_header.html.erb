@@ -11,6 +11,8 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? && current_user.admin? %>
           <li><%= link_to'<span class="glyphicon glyphicon-wrench"></span> Admin Dashboard'.html_safe, authenticated_root_path, class: 'page-scroll' %></li>
+          <li><%= link_to'<span class="glyphicon glyphicon-circle"></span> Restaurants'.html_safe, restaurants_path, class: 'page-scroll' %></li>
+          <li><%= link_to'<span class="glyphicon glyphicon-circle"></span> Add Restaurant'.html_safe, new_restaurant_path, class: 'page-scroll' %></li>
         <% end %>
         <% if user_signed_in? %>
           <li><%= link_to'<span class="glyphicon glyphicon-user"></span> User Dashboard'.html_safe, users_my_stars_path, class: 'page-scroll' %></li>
